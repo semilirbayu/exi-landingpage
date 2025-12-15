@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Extra Integer - Digital Agency Portfolio 2024
+
+A modern landing page for Extra Integer, an Indonesian digital agency showcasing their portfolio and services.
+
+## Tech Stack
+
+- **Runtime:** [Bun](https://bun.sh)
+- **Framework:** [Next.js 14](https://nextjs.org) (App Router)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **Icons:** [@phosphor-icons/react](https://phosphoricons.com)
+- **Fonts:** Inter & Poppins (via next/font)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Make sure you have [Bun](https://bun.sh) installed:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -fsSL https://bun.sh/install | bash
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Development
 
-## Learn More
+```bash
+bun run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Production Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+bun run build
+```
 
-## Deploy on Vercel
+### Start Production Server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+bun run start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+app/
+├── layout.tsx          # Root layout with fonts
+├── page.tsx            # Main landing page
+├── globals.css         # Global styles + animations
+
+components/
+├── layout/
+│   ├── Header.tsx      # Navigation + mobile menu
+│   └── Footer.tsx      # Footer with branding
+├── sections/
+│   ├── Hero.tsx        # Welcome section
+│   ├── Services.tsx    # What We Offer
+│   ├── Portfolio.tsx   # Our Works
+│   ├── Quote.tsx       # Inspirational quote
+│   └── Contact.tsx     # Let's Talk CTA
+
+hooks/
+└── useScrollAnimation.ts   # Intersection Observer hook
+
+lib/
+└── utils.ts            # Utility functions
+```
+
+## Features
+
+- Scroll-triggered animations
+- Responsive design (mobile-first)
+- CSS-only animations (no external animation libraries)
+- Optimized fonts with next/font
+
+## License
+
+All rights reserved - Extra Integer Technology
