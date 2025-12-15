@@ -1,45 +1,73 @@
 "use client";
 
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { cn } from "@/lib/utils";
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 export function Quote() {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 sm:py-32 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <blockquote
-          className={cn(
-            "relative",
-            isVisible ? "animate-fade-in-up" : "opacity-0"
-          )}
-        >
-          {/* Quote marks */}
-          <span className="absolute -top-8 left-0 text-8xl text-[#F16322]/10 font-serif">
-            &ldquo;
-          </span>
+    <section ref={sectionRef} className="py-20 sm:py-32 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Quote Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+            className="flex justify-center lg:justify-start"
+          >
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="relative w-64 h-64 sm:w-80 sm:h-80"
+            >
+              <Image
+                src="/images/quote.png"
+                alt="Quote illustration"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
+          </motion.div>
 
-          <p className="font-[family-name:var(--font-poppins)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight">
-            The best digital solutions arise from{" "}
-            <span className="gradient-text">simplicity</span> and{" "}
-            <span className="gradient-text">clarity</span>.
-          </p>
+          {/* Quote Text */}
+          <div className="text-center lg:text-left">
+            <motion.blockquote
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              className="relative"
+            >
+              {/* Quote marks */}
+              <span className="absolute -top-8 left-0 text-8xl text-[#F16322]/10 font-serif">
+                &ldquo;
+              </span>
 
-          <span className="absolute -bottom-8 right-0 text-8xl text-[#F16322]/10 font-serif">
-            &rdquo;
-          </span>
-        </blockquote>
+              <p className="font-[family-name:var(--font-poppins)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight">
+                The best digital solutions arise from{" "}
+                <span className="gradient-text">simplicity</span> and{" "}
+                <span className="gradient-text">clarity</span>.
+              </p>
 
-        <div
-          className={cn(
-            "mt-12",
-            isVisible ? "animate-fade-in delay-300" : "opacity-0"
-          )}
-        >
-          <p className="text-[#828282] text-sm sm:text-base max-w-xl mx-auto">
-            Siap mengembangkan kehadiran digital Anda? Mari berkolaborasi dan ciptakan sesuatu yang luar biasa bersama.
-          </p>
+              <span className="absolute -bottom-8 right-0 text-8xl text-[#F16322]/10 font-serif">
+                &rdquo;
+              </span>
+            </motion.blockquote>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+              className="mt-12"
+            >
+              <p className="text-[#828282] text-sm sm:text-base max-w-xl">
+                Siap mengembangkan kehadiran digital Anda? Mari berkolaborasi dan ciptakan sesuatu yang luar biasa bersama.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

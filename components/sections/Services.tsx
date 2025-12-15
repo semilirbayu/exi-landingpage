@@ -1,12 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import {
   Globe,
   PaintBrush,
   PencilLine,
 } from "@phosphor-icons/react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { cn } from "@/lib/utils";
+import { motion, useInView } from "framer-motion";
 
 const services = [
   {
@@ -29,22 +29,45 @@ const services = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 export function Services() {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
     <section
       id="services"
-      ref={ref}
+      ref={sectionRef}
       className="py-16 sm:py-24 bg-[#F5F5F5]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div
-          className={cn(
-            "mb-12 sm:mb-16",
-            isVisible ? "animate-fade-in-up" : "opacity-0"
-          )}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-12 sm:mb-16"
         >
           <h2 className="font-[family-name:var(--font-poppins)] text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A1A1A]">
             WHAT
@@ -53,30 +76,34 @@ export function Services() {
             <br />
             <span className="gradient-text">OFFER</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {services.map((service, index) => {
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
+          {services.map((service) => {
             const Icon = service.icon;
             return (
-              <div
+              <motion.div
                 key={service.title}
-                className={cn(
-                  "group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2",
-                  isVisible
-                    ? `animate-fade-in-up delay-${(index + 1) * 100}`
-                    : "opacity-0"
-                )}
-                style={{
-                  animationDelay: isVisible ? `${(index + 1) * 100}ms` : "0ms",
-                }}
+                variants={itemVariants}
+                whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm cursor-pointer"
               >
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 gradient-bg rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="w-14 h-14 sm:w-16 sm:h-16 gradient-bg rounded-2xl flex items-center justify-center"
+                  >
                     <Icon size={28} weight="bold" className="text-white sm:w-8 sm:h-8" />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Title */}
@@ -100,10 +127,10 @@ export function Services() {
                 <p className="text-[#828282] text-sm sm:text-base">
                   {service.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

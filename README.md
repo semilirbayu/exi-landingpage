@@ -7,6 +7,7 @@ A modern landing page for Extra Integer, an Indonesian digital agency showcasing
 - **Runtime:** [Bun](https://bun.sh)
 - **Framework:** [Next.js 14](https://nextjs.org) (App Router)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
 - **Icons:** [@phosphor-icons/react](https://phosphoricons.com)
 - **Fonts:** Inter & Poppins (via next/font)
 
@@ -66,7 +67,7 @@ components/
 │   └── Contact.tsx     # Let's Talk CTA
 
 hooks/
-└── useScrollAnimation.ts   # Intersection Observer hook
+└── (animations handled by Framer Motion's useInView)
 
 lib/
 └── utils.ts            # Utility functions
@@ -74,9 +75,10 @@ lib/
 
 ## Features
 
-- Scroll-triggered animations
+- Scroll-triggered animations with Framer Motion
+- Interactive hover and tap effects
+- Mouse-follow parallax on hero section
 - Responsive design (mobile-first)
-- CSS-only animations (no external animation libraries)
 - Optimized fonts with next/font
 
 ## License

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PuzzlePiece, List, X } from "@phosphor-icons/react";
+import { List, X } from "@phosphor-icons/react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -40,13 +41,13 @@ export function Header() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <span className="text-[#F16322] transition-transform duration-300 group-hover:rotate-12">
-              <PuzzlePiece size={32} weight="fill" />
-            </span>
-            <span className="font-[family-name:var(--font-poppins)] font-bold text-lg sm:text-xl">
-              <span className="text-[#F16322]">EXTRA </span>
-              <span className="text-[#FFCC02]">INTEGER</span>
-            </span>
+            <Image
+              src="/icons/logo.svg"
+              alt="Extra Integer"
+              width={140}
+              height={40}
+              className="h-8 sm:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop Navigation */}

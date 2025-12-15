@@ -1,132 +1,118 @@
 "use client";
 
-import { PuzzlePiece } from "@phosphor-icons/react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { cn } from "@/lib/utils";
-
-const stats = [
-  { value: "5+", label: "YEAR OF EXPERIENCE" },
-  { value: "12", label: "PROJECTS DONE" },
-  { value: "11", label: "CLIENTS SERVED" },
-];
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useInView, useMotionValue, useSpring, useTransform, type Variants } from "framer-motion";
 
 export function Hero() {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  // Mouse tracking for parallax
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth spring animation for mouse follow
+  const springConfig = { damping: 25, stiffness: 150 };
+  const puzzleX = useSpring(useTransform(mouseX, [-1, 1], [-25, 25]), springConfig);
+  const puzzleY = useSpring(useTransform(mouseY, [-1, 1], [-15, 15]), springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX.set((e.clientX - centerX) / (rect.width / 2));
+    mouseY.set((e.clientY - centerY) / (rect.height / 2));
+  };
 
   return (
-    <section
-      ref={ref}
-      className="min-h-screen bg-white flex items-center pt-20 sm:pt-24 pb-16"
+    <motion.section
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="min-h-screen bg-white flex flex-col justify-center pt-20 pb-16 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div
-            className={cn(
-              "order-2 lg:order-1",
-              isVisible ? "animate-fade-in-up" : "opacity-0"
-            )}
+        <div className="relative">
+          {/* Title with Puzzle */}
+          <div className="relative">
+            <h1 className="font-[family-name:var(--font-poppins)] text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold leading-[0.85] tracking-tight">
+              <motion.span
+                initial={{ opacity: 0, y: 60 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-[#F16322] block cursor-default"
+                whileHover={{
+                  textShadow: "0 0 40px rgba(241, 99, 34, 0.4)",
+                  transition: { duration: 0.3 },
+                }}
+              >
+                EXTRA
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 60 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+                className="text-[#FFCC02] block cursor-default"
+                whileHover={{
+                  textShadow: "0 0 40px rgba(255, 204, 2, 0.5)",
+                  transition: { duration: 0.3 },
+                }}
+              >
+                INTEGER
+              </motion.span>
+            </h1>
+
+            {/* Puzzle Image - Floating & Mouse-follow */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              style={{ x: puzzleX, y: puzzleY }}
+              className="absolute top-1/2 right-0 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[420px] lg:h-[420px]"
+            >
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  ease: "easeInOut",
+                }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <Image
+                    src="/images/puzzle.png"
+                    alt="3D Puzzle"
+                    width={420}
+                    height={420}
+                    className="w-full h-full object-contain drop-shadow-2xl cursor-pointer"
+                    priority
+                  />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Welcome Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            className="mt-12 sm:mt-16 max-w-md"
           >
-            {/* Main Title */}
-            <div className="mb-8">
-              <h1 className="font-[family-name:var(--font-poppins)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none">
-                <span className="text-[#F16322]">EXTRA</span>
-                <br />
-                <span className="text-[#FFCC02]">INTEGER</span>
-              </h1>
-            </div>
-
-            {/* Welcome Text */}
-            <div className="mb-8">
-              <p className="text-lg sm:text-xl text-[#1A1A1A] font-semibold mb-2">
-                Welcome
-              </p>
-              <p className="text-[#828282] text-sm sm:text-base max-w-md">
-                Kami sangat antusias untuk menampilkan perjalanan, pencapaian, dan solusi inovatif yang telah kami ciptakan.
-              </p>
-            </div>
-
-            {/* Portfolio Badge */}
-            <div
-              className={cn(
-                "inline-block mb-10",
-                isVisible ? "animate-fade-in delay-200" : "opacity-0"
-              )}
-            >
-              <span className="bg-[#1A1A1A] text-white px-4 py-2 rounded-full text-sm font-medium">
-                PORTOFOLIO 2024
-              </span>
-            </div>
-
-            {/* Description */}
-            <p
-              className={cn(
-                "text-[#828282] text-sm sm:text-base max-w-lg mb-10",
-                isVisible ? "animate-fade-in delay-300" : "opacity-0"
-              )}
-            >
-              Extra Integer adalah agensi digital Indonesia yang berkomitmen untuk menggabungkan kreativitas dengan teknologi guna memberikan solusi yang luar biasa. Kami telah menjadi mitra terpercaya bagi klien yang mencari pengalaman digital inovatif dan berdampak di seluruh Indonesia.
+            <p className="text-xs sm:text-sm font-semibold text-[#1A1A1A] tracking-widest uppercase mb-3">
+              Welcome
             </p>
-
-            {/* Stats */}
-            <div
-              className={cn(
-                "flex flex-wrap gap-8 sm:gap-12",
-                isVisible ? "animate-fade-in-up delay-400" : "opacity-0"
-              )}
-            >
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center sm:text-left">
-                  <p className="font-[family-name:var(--font-poppins)] text-3xl sm:text-4xl font-bold text-[#1A1A1A]">
-                    {stat.value}
-                  </p>
-                  <p className="text-[#828282] text-xs sm:text-sm mt-1">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Visual */}
-          <div
-            className={cn(
-              "order-1 lg:order-2 flex justify-center lg:justify-end",
-              isVisible ? "animate-scale-in delay-200" : "opacity-0"
-            )}
-          >
-            <div className="relative">
-              {/* 3D Puzzle Visual Placeholder */}
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 relative animate-float">
-                {/* Background gradient blob */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#F16322]/20 to-[#FFCC02]/20 rounded-full blur-3xl" />
-
-                {/* Main puzzle piece */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Outer glow */}
-                    <div className="absolute -inset-8 bg-gradient-to-br from-[#F16322] to-[#FFCC02] rounded-3xl opacity-20 blur-2xl" />
-
-                    {/* Main puzzle container */}
-                    <div className="relative bg-gradient-to-br from-[#F16322] to-[#FFCC02] p-8 sm:p-12 rounded-3xl shadow-2xl transform rotate-12 hover:rotate-0 transition-transform duration-500">
-                      <PuzzlePiece
-                        size={120}
-                        weight="fill"
-                        className="text-white drop-shadow-lg sm:w-40 sm:h-40"
-                      />
-                    </div>
-
-                    {/* Decorative elements */}
-                    <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#FFCC02] rounded-full opacity-60" />
-                    <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-[#F16322] rounded-full opacity-40" />
-                    <div className="absolute top-1/2 -right-8 w-4 h-4 bg-[#F16322] rounded-full opacity-80" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <p className="text-[#828282] text-sm sm:text-base leading-relaxed uppercase tracking-wide">
+              Kami sangat antusias untuk menampilkan perjalanan, pencapaian, dan solusi inovatif yang telah kami ciptakan.
+            </p>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

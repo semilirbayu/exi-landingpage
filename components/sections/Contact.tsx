@@ -1,8 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { Phone, Envelope, WhatsappLogo } from "@phosphor-icons/react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { cn } from "@/lib/utils";
+import { motion, useInView } from "framer-motion";
 
 const contactLinks = [
   {
@@ -25,22 +25,45 @@ const contactLinks = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 export function Contact() {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
     <section
       id="contact"
-      ref={ref}
+      ref={sectionRef}
       className="py-16 sm:py-24 bg-[#F5F5F5]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div
-            className={cn(
-              isVisible ? "animate-slide-in-left" : "opacity-0"
-            )}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
           >
             <h2 className="font-[family-name:var(--font-poppins)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A1A1A] mb-6">
               LET&apos;S{" "}
@@ -49,35 +72,38 @@ export function Contact() {
             <p className="text-[#828282] text-base sm:text-lg max-w-md">
               Hubungi kami, dan mari wujudkan visi Anda menjadi kenyataan.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Content - Contact Cards */}
-          <div
-            className={cn(
-              "flex flex-col sm:flex-row gap-4",
-              isVisible ? "animate-slide-in-right" : "opacity-0"
-            )}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="flex flex-col sm:flex-row gap-4"
           >
-            {contactLinks.map((contact, index) => {
+            {contactLinks.map((contact) => {
               const Icon = contact.icon;
               return (
-                <a
+                <motion.a
                   key={contact.label}
                   href={contact.href}
                   target={contact.label === "WhatsApp" ? "_blank" : undefined}
                   rel={contact.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                  className={cn(
-                    "group flex-1 bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 text-center"
-                  )}
-                  style={{
-                    animationDelay: isVisible ? `${(index + 1) * 100}ms` : "0ms",
-                  }}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="group flex-1 bg-white rounded-2xl p-6 shadow-sm text-center cursor-pointer"
                 >
                   {/* Icon */}
                   <div className="mb-4 flex justify-center">
-                    <div className="w-14 h-14 gradient-bg rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      className="w-14 h-14 gradient-bg rounded-full flex items-center justify-center"
+                    >
                       <Icon size={28} weight="fill" className="text-white" />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Label */}
@@ -87,10 +113,10 @@ export function Contact() {
                   <p className="font-semibold text-[#1A1A1A] text-sm group-hover:text-[#F16322] transition-colors duration-300">
                     {contact.value}
                   </p>
-                </a>
+                </motion.a>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
