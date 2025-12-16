@@ -53,7 +53,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-16 sm:py-24 bg-[#1A1A1A]"
+      className="py-16 sm:py-24 bg-dark"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Description Text */}
@@ -101,7 +101,7 @@ export function About() {
                 variants={itemVariants}
                 className="text-left"
               >
-                <span className="font-[family-name:var(--font-poppins)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white block">
+                <span className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white block">
                   {stat.value}
                 </span>
                 <span className="text-[#828282] text-xs sm:text-sm tracking-wider mt-2 block">

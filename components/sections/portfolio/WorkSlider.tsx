@@ -66,7 +66,7 @@ export function WorkSlider({ projects }: WorkSliderProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-white overflow-hidden"
+      className="relative bg-light overflow-hidden"
       role="region"
       aria-roledescription="carousel"
       aria-label="Portfolio projects"
@@ -81,7 +81,7 @@ export function WorkSlider({ projects }: WorkSliderProps) {
         className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-lg"
         aria-label="Previous project"
       >
-        <CaretLeft size={24} className="text-gray-700" weight="bold" />
+        <CaretLeft size={24} className="text-dark" weight="bold" />
       </motion.button>
 
       <motion.button
@@ -93,7 +93,7 @@ export function WorkSlider({ projects }: WorkSliderProps) {
         className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-lg"
         aria-label="Next project"
       >
-        <CaretRight size={24} className="text-gray-700" weight="bold" />
+        <CaretRight size={24} className="text-dark" weight="bold" />
       </motion.button>
 
       {/* Slides Container */}
@@ -137,11 +137,10 @@ export function WorkSlider({ projects }: WorkSliderProps) {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? "w-8 bg-gradient-to-r from-[#F16322] to-[#FFCC02]"
-                : "bg-gray-300 hover:bg-gray-400"
-            }`}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentSlide
+              ? "w-8 bg-gradient-to-r from-primary to-secondary"
+              : "bg-gray-300 hover:bg-gray-400"
+              }`}
             aria-label={`Go to project ${index + 1}`}
             aria-current={index === currentSlide ? "true" : "false"}
           />
@@ -153,9 +152,9 @@ export function WorkSlider({ projects }: WorkSliderProps) {
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ delay: 0.7 }}
-        className="absolute bottom-6 right-4 sm:right-8 text-gray-400 text-sm font-mono"
+        className="absolute bottom-6 right-4 sm:right-8 text-dark text-sm font-mono"
       >
-        <span className="text-gray-700">{String(currentSlide + 1).padStart(2, "0")}</span>
+        <span className="text-dark">{String(currentSlide + 1).padStart(2, "0")}</span>
         <span className="mx-1">/</span>
         <span>{String(projects.length).padStart(2, "0")}</span>
       </motion.div>

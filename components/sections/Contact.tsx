@@ -6,16 +6,10 @@ import { motion, useInView } from "framer-motion";
 
 const contactLinks = [
   {
-    icon: Phone,
-    label: "Phone",
-    value: "0857 3333 7052",
-    href: "tel:+6285733337052",
-  },
-  {
     icon: Envelope,
     label: "Email",
-    value: "semilirbayu@gmail.com",
-    href: "mailto:semilirbayu@gmail.com",
+    value: "bayu@extrainteger.com",
+    href: "mailto:bayu@extrainteger.com",
   },
   {
     icon: WhatsappLogo,
@@ -55,7 +49,7 @@ export function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-16 sm:py-24 bg-[#F5F5F5]"
+      className="py-16 sm:py-24 bg-light"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -65,11 +59,11 @@ export function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <h2 className="font-[family-name:var(--font-poppins)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A1A1A] mb-6">
+            <h2 className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl md:text-6xl font-bold text-dark mb-6">
               LET&apos;S{" "}
               <span className="gradient-text">TALK!</span>
             </h2>
-            <p className="text-[#828282] text-base sm:text-lg max-w-md">
+            <p className="text-dark text-base sm:text-lg max-w-md">
               Hubungi kami, dan mari wujudkan visi Anda menjadi kenyataan.
             </p>
           </motion.div>
@@ -107,10 +101,10 @@ export function Contact() {
                   </div>
 
                   {/* Label */}
-                  <p className="text-[#828282] text-sm mb-1">{contact.label}</p>
+                  <p className="text-dark text-sm mb-1">{contact.label}</p>
 
                   {/* Value */}
-                  <p className="font-semibold text-[#1A1A1A] text-sm group-hover:text-[#F16322] transition-colors duration-300">
+                  <p className="font-semibold text-dark text-sm group-hover:text-primary transition-colors duration-300">
                     {contact.value}
                   </p>
                 </motion.a>

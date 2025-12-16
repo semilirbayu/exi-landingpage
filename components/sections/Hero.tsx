@@ -30,18 +30,18 @@ export function Hero() {
     <motion.section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="min-h-screen bg-white flex flex-col justify-center pt-20 pb-16 overflow-hidden"
+      className="min-h-screen bg-light flex flex-col justify-center pt-20 pb-16 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="relative">
           {/* Title with Puzzle */}
           <div className="relative">
-            <h1 className="font-[family-name:var(--font-poppins)] text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold leading-[0.85] tracking-tight">
+            <h1 className="font-[family-name:var(--font-inter)] text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold leading-[0.85] tracking-tight">
               <motion.span
                 initial={{ opacity: 0, y: 60 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-[#F16322] block cursor-default"
+                className="text-primary block cursor-default"
                 whileHover={{
                   textShadow: "0 0 40px rgba(241, 99, 34, 0.4)",
                   transition: { duration: 0.3 },
@@ -53,7 +53,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 60 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-                className="text-[#FFCC02] block cursor-default"
+                className="text-secondary block cursor-default"
                 whileHover={{
                   textShadow: "0 0 40px rgba(255, 204, 2, 0.5)",
                   transition: { duration: 0.3 },
@@ -104,10 +104,10 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 max-w-md"
           >
-            <p className="text-xs sm:text-sm font-semibold text-[#1A1A1A] tracking-widest uppercase mb-3">
+            <p className="text-xs sm:text-sm font-semibold text-dark tracking-widest uppercase mb-3">
               Welcome
             </p>
-            <p className="text-[#828282] text-sm sm:text-base leading-relaxed uppercase tracking-wide">
+            <p className="text-dark text-sm sm:text-base leading-relaxed uppercase tracking-wide">
               Kami sangat antusias untuk menampilkan perjalanan, pencapaian, dan solusi inovatif yang telah kami ciptakan.
             </p>
           </motion.div>

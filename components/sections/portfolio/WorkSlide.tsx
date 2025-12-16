@@ -34,7 +34,7 @@ const itemVariants = {
 
 export function WorkSlide({ project, isActive }: WorkSlideProps) {
   return (
-    <div className="min-w-full h-full bg-white py-8 lg:py-12">
+    <div className="min-w-full h-full bg-light py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col">
         {/* Header */}
         <motion.div
@@ -45,16 +45,16 @@ export function WorkSlide({ project, isActive }: WorkSlideProps) {
         >
           <motion.span
             variants={itemVariants}
-            className="text-gray-500 text-sm font-mono"
+            className="text-dark text-sm font-mono"
           >
             WORK #{project.number}
           </motion.span>
-          <motion.span variants={itemVariants} className="text-gray-400">
+          <motion.span variants={itemVariants} className="text-dark">
             |
           </motion.span>
           <motion.span
             variants={itemVariants}
-            className="text-gray-700 text-sm font-semibold tracking-wide"
+            className="text-dark text-sm font-semibold tracking-wide"
           >
             {project.category}
           </motion.span>
@@ -117,10 +117,10 @@ export function WorkSlide({ project, isActive }: WorkSlideProps) {
               </div>
             )}
             <div className="flex flex-col">
-              <h3 className="font-[family-name:var(--font-poppins)] text-lg lg:text-xl font-bold text-gray-900 uppercase leading-tight">
+              <h3 className="font-[family-name:var(--font-inter)] text-lg lg:text-xl font-bold text-dark uppercase leading-tight">
                 {project.title}
               </h3>
-              <span className="text-gray-500 text-xs font-medium uppercase tracking-wider">
+              <span className="text-dark text-xs font-medium uppercase tracking-wider">
                 {project.tech}
               </span>
             </div>
@@ -132,12 +132,12 @@ export function WorkSlide({ project, isActive }: WorkSlideProps) {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-900 hover:text-gray-600 transition-colors text-sm underline decoration-gray-300 underline-offset-4 break-all"
+                className="text-dark hover:opacity-70 transition-colors text-sm underline decoration-dark underline-offset-4 break-all"
               >
                 {project.url}
               </a>
             ) : (
-              <span className="text-gray-400 text-sm italic">Coming soon</span>
+              <span className="text-dark text-sm italic">Coming soon</span>
             )}
           </motion.div>
         </motion.div>

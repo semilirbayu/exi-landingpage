@@ -9,7 +9,7 @@ export function Footer() {
   const isInView = useInView(footerRef, { once: true, margin: "-50px" });
 
   return (
-    <footer ref={footerRef} className="bg-[#1A1A1A] text-white py-16 sm:py-24">
+    <footer ref={footerRef} className="bg-dark text-white py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -31,7 +31,7 @@ export function Footer() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-[family-name:var(--font-poppins)] text-4xl sm:text-6xl md:text-7xl font-bold"
+              className="font-[family-name:var(--font-inter)] text-4xl sm:text-6xl md:text-7xl font-bold"
             >
               <span className="text-white">TERIMA</span>
               <br />

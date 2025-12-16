@@ -59,7 +59,7 @@ export function MosaicHero({ projects }: MosaicHeroProps) {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full max-w-[1400px] mx-auto min-h-[700px] lg:min-h-[850px] bg-white overflow-hidden px-4 md:px-6 py-12 md:py-24 flex flex-col justify-center"
+      className="relative w-full max-w-[1400px] mx-auto min-h-[700px] lg:min-h-[850px] bg-light overflow-hidden px-4 md:px-6 py-12 md:py-24 flex flex-col justify-center"
     >
       {/* Desktop: Spreadsheet Grid Layout (12 Columns) */}
       <motion.div
@@ -94,10 +94,10 @@ export function MosaicHero({ projects }: MosaicHeroProps) {
         variants={circleVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] lg:w-[320px] lg:h-[320px] bg-white rounded-full shadow-2xl items-center justify-center z-50 pointer-events-none"
+        className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] lg:w-[320px] lg:h-[320px] bg-light rounded-full shadow-2xl items-center justify-center z-50 pointer-events-none"
       >
         <div className="text-center">
-          <h2 className="font-[family-name:var(--font-poppins)] text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight tracking-tight">
+          <h2 className="font-[family-name:var(--font-inter)] text-4xl lg:text-5xl font-bold text-dark leading-tight tracking-tight">
             OUR
             <br />
             WORKS
@@ -118,7 +118,7 @@ export function MosaicHero({ projects }: MosaicHeroProps) {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <h2 className="font-[family-name:var(--font-poppins)] text-3xl font-bold text-[#1A1A1A]">
+          <h2 className="font-[family-name:var(--font-inter)] text-3xl font-bold text-dark">
             OUR WORKS
           </h2>
         </motion.div>

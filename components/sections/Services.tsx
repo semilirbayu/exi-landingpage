@@ -48,7 +48,7 @@ export function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="py-16 sm:py-24 bg-[#F5F5F5]"
+      className="py-16 sm:py-24 bg-light"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -58,7 +58,7 @@ export function Services() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="font-[family-name:var(--font-poppins)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A1A1A] leading-tight">
+            <h2 className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A1A1A] leading-tight">
               WHAT
               <br />
               <span className="text-[#828282]">WE</span>
@@ -80,7 +80,7 @@ export function Services() {
                 variants={itemVariants}
               >
                 {/* Service Title */}
-                <h3 className="font-[family-name:var(--font-poppins)] text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-4">
+                <h3 className="font-[family-name:var(--font-inter)] text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-4">
                   {service.title}
                 </h3>
 

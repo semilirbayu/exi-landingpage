@@ -9,7 +9,7 @@ export function Quote() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-32 bg-white overflow-hidden">
+    <section ref={sectionRef} className="py-20 sm:py-32 bg-light overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Quote Image */}
@@ -42,17 +42,17 @@ export function Quote() {
               className="relative"
             >
               {/* Quote marks */}
-              <span className="absolute -top-8 left-0 text-8xl text-[#F16322]/10 font-serif">
+              <span className="absolute -top-8 left-0 text-8xl text-primary/10 font-serif">
                 &ldquo;
               </span>
 
-              <p className="font-[family-name:var(--font-poppins)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight">
+              <p className="font-[family-name:var(--font-inter)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight">
                 The best digital solutions arise from{" "}
                 <span className="gradient-text">simplicity</span> and{" "}
                 <span className="gradient-text">clarity</span>.
               </p>
 
-              <span className="absolute -bottom-8 right-0 text-8xl text-[#F16322]/10 font-serif">
+              <span className="absolute -bottom-8 right-0 text-8xl text-primary/10 font-serif">
                 &rdquo;
               </span>
             </motion.blockquote>
@@ -63,7 +63,7 @@ export function Quote() {
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
               className="mt-12"
             >
-              <p className="text-[#828282] text-sm sm:text-base max-w-xl">
+              <p className="text-dark text-sm sm:text-base max-w-xl">
                 Siap mengembangkan kehadiran digital Anda? Mari berkolaborasi dan ciptakan sesuatu yang luar biasa bersama.
               </p>
             </motion.div>

@@ -3,10 +3,10 @@
 :root {
   --color-primary: #F16322;
   --color-secondary: #FFCC02;
-  --color-dark: #1A1A1A;
-  --color-light: #FFFFFF;
-  --color-gray: #828282;
-  --color-gray-light: #F5F5F5;
+  --color-dark: #222222;
+  --color-light: #F8F8FF;
+  --color-gray: #CDCDDA;
+  --color-gray-light: #E9E9F2;
 }
 
 @theme inline {
@@ -17,7 +17,7 @@
   --color-gray: var(--color-gray);
   --color-gray-light: var(--color-gray-light);
 
-  --font-heading: var(--font-poppins);
+  --font-heading: var(--font-inter);
   --font-body: var(--font-inter);
 }
 
@@ -53,7 +53,7 @@ body {
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, #F16322, #FFCC02);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -61,5 +61,5 @@ body {
 
 /* Gradient background utility */
 .gradient-bg {
-  background: linear-gradient(135deg, #F16322, #FFCC02);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
 }
