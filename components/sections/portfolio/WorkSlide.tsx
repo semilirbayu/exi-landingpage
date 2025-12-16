@@ -132,7 +132,7 @@ export function WorkSlide({ project, isActive }: WorkSlideProps) {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark hover:opacity-70 transition-colors text-sm underline decoration-dark underline-offset-4 break-all"
+                className="text-dark hover:opacity-70 transition-colors text-sm underline decoration-dark underline-offset-4 break-all italic"
               >
                 {project.url}
               </a>

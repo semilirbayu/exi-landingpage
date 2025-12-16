@@ -5,9 +5,9 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { value: "5+", label: "YEAR OF EXPERIENCE" },
-  { value: "12", label: "PROJECTS DONE" },
-  { value: "11", label: "CLIENTS SERVED" },
+  { value: "9+", label: "YEAR OF EXPERIENCE" },
+  { value: "100+", label: "PROJECTS DONE" },
+  { value: "48", label: "CLIENTS SERVED" },
 ];
 
 const clientLogos = [

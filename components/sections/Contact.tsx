@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { Phone, Envelope, WhatsappLogo } from "@phosphor-icons/react";
 import { motion, useInView } from "framer-motion";
 
@@ -49,69 +50,75 @@ export function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-16 sm:py-24 bg-light"
+      className="py-16 sm:py-24 bg-light overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-12 flex flex-col items-center"
+        >
+          {/* Quote Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            className="relative w-80 h-80 sm:w-96 sm:h-96 mb-8"
           >
-            <h2 className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl md:text-6xl font-bold text-dark mb-6">
-              LET&apos;S{" "}
-              <span className="gradient-text">TALK!</span>
-            </h2>
-            <p className="text-dark text-base sm:text-lg max-w-md">
-              Hubungi kami, dan mari wujudkan visi Anda menjadi kenyataan.
-            </p>
+            <Image
+              src="/images/quote.png"
+              alt="Quote illustration"
+              fill
+              className="object-contain drop-shadow-2xl"
+            />
           </motion.div>
 
-          {/* Right Content - Contact Cards */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            {contactLinks.map((contact) => {
-              const Icon = contact.icon;
-              return (
-                <motion.a
-                  key={contact.label}
-                  href={contact.href}
-                  target={contact.label === "WhatsApp" ? "_blank" : undefined}
-                  rel={contact.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                  variants={itemVariants}
-                  whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className="group flex-1 bg-white rounded-2xl p-6 shadow-sm text-center cursor-pointer"
-                >
-                  {/* Icon */}
-                  <div className="mb-4 flex justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 10 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      className="w-14 h-14 gradient-bg rounded-full flex items-center justify-center"
-                    >
-                      <Icon size={28} weight="fill" className="text-white" />
-                    </motion.div>
-                  </div>
+          <h2 className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl font-bold text-dark mb-6">
+            LET&apos;S{" "}
+            <span className="gradient-text">TALK!</span>
+          </h2>
+          <p className="text-dark text-base sm:text-lg max-w-xl mx-auto">
+            Siap mengembangkan kehadiran digital Anda? Mari berkolaborasi dan ciptakan
+            sesuatu yang luar biasa bersama. Hubungi kami, dan mari wujudkan visi Anda
+            menjadi kenyataan.
+          </p>
+        </motion.div>
 
-                  {/* Label */}
-                  <p className="text-dark text-sm mb-1">{contact.label}</p>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+        >
+          {contactLinks.map((contact) => {
+            const Icon = contact.icon;
+            return (
+              <motion.a
+                key={contact.label}
+                href={contact.href}
+                target={contact.label === "WhatsApp" ? "_blank" : undefined}
+                rel={contact.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                className="group flex flex-col items-center"
+              >
+                <div className="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <Icon size={32} weight="fill" className="text-white" />
+                </div>
+                {/* 
+                <p className="text-dark font-medium text-sm sm:text-base">
+                  {contact.value}
+                </p>
+                */}
+                <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold group-hover:text-primary transition-colors">
+                  {contact.label === "Email" ? "Email Us" : "Chat Us"}
+                </p>
+              </motion.a>
+            );
+          })}
+        </motion.div>
 
-                  {/* Value */}
-                  <p className="font-semibold text-dark text-sm group-hover:text-primary transition-colors duration-300">
-                    {contact.value}
-                  </p>
-                </motion.a>
-              );
-            })}
-          </motion.div>
-        </div>
       </div>
     </section>
   );
