@@ -70,13 +70,13 @@ export function WorkSlide({ project, isActive }: WorkSlideProps) {
           {/* Left: Main Screenshot (large) */}
           <motion.div
             variants={itemVariants}
-            className="flex-1 relative rounded-2xl overflow-hidden shadow-2xl"
+            className="w-full lg:flex-1 relative h-[50vh] lg:h-auto lg:aspect-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-100"
           >
             <Image
               src={project.standard}
               alt={project.title}
               fill
-              className="object-cover"
+              className="object-cover object-top"
               priority={isActive}
             />
           </motion.div>
@@ -100,7 +100,7 @@ export function WorkSlide({ project, isActive }: WorkSlideProps) {
           variants={contentVariants}
           initial="hidden"
           animate={isActive ? "visible" : "hidden"}
-          className="mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-2 lg:mt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <motion.div
             variants={itemVariants}

@@ -59,14 +59,14 @@ export function MosaicHero({ projects }: MosaicHeroProps) {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full max-w-[1400px] mx-auto min-h-[700px] lg:min-h-[850px] bg-light overflow-hidden px-4 md:px-6 py-12 md:py-24 flex flex-col justify-center"
+      className="relative w-full max-w-[1400px] mx-auto min-h-[500px] lg:min-h-[850px] bg-light overflow-hidden px-2 md:px-6 py-12 md:py-24 flex flex-col justify-center"
     >
-      {/* Desktop: Spreadsheet Grid Layout (12 Columns) */}
+      {/* Mosaic Grid Layout (12 Columns) - Responsive */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="hidden md:grid grid-cols-12 auto-rows-[45px] gap-3 w-full"
+        className="grid grid-cols-12 auto-rows-[12px] md:auto-rows-[45px] gap-1 md:gap-3 w-full"
       >
         {projects.map((project) => (
           <motion.div
@@ -94,50 +94,14 @@ export function MosaicHero({ projects }: MosaicHeroProps) {
         variants={circleVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] lg:w-[320px] lg:h-[320px] bg-light rounded-full shadow-2xl items-center justify-center z-50 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] bg-light rounded-full shadow-2xl flex items-center justify-center z-50 pointer-events-none"
       >
         <div className="text-center">
-          <h2 className="font-[family-name:var(--font-inter)] text-4xl lg:text-5xl font-bold text-dark leading-tight tracking-tight">
+          <h2 className="font-[family-name:var(--font-inter)] text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight tracking-tight">
             OUR
             <br />
             WORKS
           </h2>
-        </div>
-      </motion.div>
-
-      {/* Mobile: 2-column Grid Layout */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="md:hidden px-4 py-12"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-8"
-        >
-          <h2 className="font-[family-name:var(--font-inter)] text-3xl font-bold text-dark">
-            OUR WORKS
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-2 gap-3">
-          {projects.slice(0, 8).map((project) => (
-            <motion.div
-              key={project.number}
-              variants={imageVariants}
-              className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg"
-            >
-              <Image
-                src={project.thumbnail}
-                alt={project.title}
-                fill
-                className="object-cover object-top"
-              />
-            </motion.div>
-          ))}
         </div>
       </motion.div>
     </div>
