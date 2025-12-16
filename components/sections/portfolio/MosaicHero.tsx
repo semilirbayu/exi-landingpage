@@ -59,7 +59,7 @@ export function MosaicHero({ projects }: MosaicHeroProps) {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full max-w-[1400px] mx-auto min-h-[500px] lg:min-h-[850px] bg-light overflow-hidden px-2 md:px-6 py-12 md:py-24 flex flex-col justify-center"
+      className="relative w-full max-w-[1400px] mx-auto min-h-[500px] lg:min-h-[700px] bg-light overflow-hidden px-2 md:px-6 py-12 md:py-16 flex flex-col justify-center"
     >
       {/* Mosaic Grid Layout (12 Columns) - Responsive */}
       <motion.div
