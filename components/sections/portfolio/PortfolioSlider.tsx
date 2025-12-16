@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { motion, useInView, PanInfo } from "framer-motion";
+import { motion, useInView, useReducedMotion, PanInfo } from "framer-motion";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { Project } from "./types";
 import { PortfolioSlide } from "./PortfolioSlide";
@@ -16,6 +16,7 @@ export function PortfolioSlider({ projects }: PortfolioSliderProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
         const updateSlideWidth = () => {
@@ -73,9 +74,9 @@ export function PortfolioSlider({ projects }: PortfolioSliderProps) {
         >
             {/* Navigation Arrows */}
             <motion.button
-                initial={{ opacity: 0, x: -20 }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: prefersReducedMotion ? 0 : 0.5 }}
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
                 className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-lg"
@@ -85,9 +86,9 @@ export function PortfolioSlider({ projects }: PortfolioSliderProps) {
             </motion.button>
 
             <motion.button
-                initial={{ opacity: 0, x: 20 }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: prefersReducedMotion ? 0 : 0.5 }}
                 onClick={nextSlide}
                 disabled={currentSlide === projects.length - 1}
                 className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-lg"
@@ -99,16 +100,20 @@ export function PortfolioSlider({ projects }: PortfolioSliderProps) {
             {/* Slides Container */}
             <div ref={containerRef} className="overflow-hidden">
                 <motion.div
-                    drag="x"
+                    drag={prefersReducedMotion ? false : "x"}
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={0.1}
                     onDragEnd={handleDragEnd}
                     animate={{ x: -currentSlide * slideWidth }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 30,
-                    }}
+                    transition={
+                        prefersReducedMotion
+                            ? { duration: 0.01 }
+                            : {
+                                  type: "spring",
+                                  stiffness: 300,
+                                  damping: 30,
+                              }
+                    }
                     className="flex cursor-grab active:cursor-grabbing"
                     style={{ touchAction: "pan-y pinch-zoom" }}
                 >
@@ -128,9 +133,9 @@ export function PortfolioSlider({ projects }: PortfolioSliderProps) {
 
             {/* Pagination Dots */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: prefersReducedMotion ? 0 : 0.6 }}
                 className="flex justify-center gap-2 py-6"
             >
                 {projects.map((_, index) => (
@@ -151,7 +156,7 @@ export function PortfolioSlider({ projects }: PortfolioSliderProps) {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: prefersReducedMotion ? 0 : 0.7 }}
                 className="absolute bottom-6 right-4 sm:right-8 text-dark text-sm font-mono"
             >
                 <span className="text-dark">{String(currentSlide + 1).padStart(2, "0")}</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const services = [
   {
@@ -43,6 +43,7 @@ const itemVariants = {
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
@@ -54,9 +55,9 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Section Header - Left Column */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, ease: "easeOut" }}
           >
             <h2 className="font-[family-name:var(--font-inter)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A1A1A] leading-tight">
               WHAT
@@ -69,15 +70,15 @@ export function Services() {
 
           {/* Services List - Right Column */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            variants={prefersReducedMotion ? undefined : containerVariants}
+            initial={prefersReducedMotion ? { opacity: 0 } : "hidden"}
+            animate={isInView ? (prefersReducedMotion ? { opacity: 1 } : "visible") : "hidden"}
             className="space-y-0"
           >
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                variants={itemVariants}
+                variants={prefersReducedMotion ? undefined : itemVariants}
               >
                 {/* Service Title */}
                 <h3 className="font-[family-name:var(--font-inter)] text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-4">

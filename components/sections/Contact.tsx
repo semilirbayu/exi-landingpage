@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { Envelope, WhatsappLogo } from "@phosphor-icons/react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const contactLinks = [
   {
@@ -45,6 +45,7 @@ const itemVariants = {
 export function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
@@ -54,21 +55,27 @@ export function Contact() {
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, ease: "easeOut" }}
           className="mb-12 flex flex-col items-center"
         >
           {/* Quote Image */}
           <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            animate={prefersReducedMotion ? {} : { y: [0, -10, 0] }}
+            transition={
+              prefersReducedMotion
+                ? {}
+                : { repeat: Infinity, duration: 4, ease: "easeInOut" }
+            }
             className="relative w-80 h-80 sm:w-96 sm:h-96 mb-8"
           >
             <Image
-              src="/images/quote.png"
-              alt="Quote illustration"
+              src="/images/quote.webp"
+              alt="Quote illustration representing communication and collaboration"
               fill
+              sizes="(max-width: 640px) 320px, 384px"
+              loading="lazy"
               className="object-contain drop-shadow-2xl"
             />
           </motion.div>
@@ -85,10 +92,10 @@ export function Contact() {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          variants={prefersReducedMotion ? undefined : containerVariants}
+          initial={prefersReducedMotion ? { opacity: 0 } : "hidden"}
+          animate={isInView ? (prefersReducedMotion ? { opacity: 1 } : "visible") : "hidden"}
+          className="flex flex-row gap-6 justify-center items-center"
         >
           {contactLinks.map((contact) => {
             const Icon = contact.icon;
@@ -98,9 +105,9 @@ export function Contact() {
                 href={contact.href}
                 target={contact.label === "WhatsApp" ? "_blank" : undefined}
                 rel={contact.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.98 }}
+                variants={prefersReducedMotion ? undefined : itemVariants}
+                whileHover={prefersReducedMotion ? {} : { y: -5 }}
+                whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                 className="group flex flex-col items-center"
               >
                 <div className="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg mb-3 group-hover:scale-110 transition-transform duration-300">

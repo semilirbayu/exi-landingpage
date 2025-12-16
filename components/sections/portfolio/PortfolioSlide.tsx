@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Project } from "./types";
 
 interface PortfolioSlideProps {
@@ -33,27 +33,34 @@ const itemVariants = {
 };
 
 export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
+    const prefersReducedMotion = useReducedMotion();
+
+    const activeContentVariants = prefersReducedMotion
+        ? undefined
+        : contentVariants;
+    const activeItemVariants = prefersReducedMotion ? undefined : itemVariants;
+
     return (
         <div className="min-w-full h-full bg-light py-8 lg:py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col">
                 {/* Header */}
                 <motion.div
-                    variants={contentVariants}
-                    initial="hidden"
-                    animate={isActive ? "visible" : "hidden"}
+                    variants={activeContentVariants}
+                    initial={prefersReducedMotion ? { opacity: 0 } : "hidden"}
+                    animate={isActive ? (prefersReducedMotion ? { opacity: 1 } : "visible") : "hidden"}
                     className="flex items-center gap-3 mb-6 lg:mb-8"
                 >
                     <motion.span
-                        variants={itemVariants}
+                        variants={activeItemVariants}
                         className="text-dark text-sm font-mono"
                     >
                         WORK #{project.number}
                     </motion.span>
-                    <motion.span variants={itemVariants} className="text-dark">
+                    <motion.span variants={activeItemVariants} className="text-dark">
                         |
                     </motion.span>
                     <motion.span
-                        variants={itemVariants}
+                        variants={activeItemVariants}
                         className="text-dark text-sm font-semibold tracking-wide"
                     >
                         {project.category}
@@ -62,20 +69,21 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
 
                 {/* Main Content */}
                 <motion.div
-                    variants={contentVariants}
-                    initial="hidden"
-                    animate={isActive ? "visible" : "hidden"}
+                    variants={activeContentVariants}
+                    initial={prefersReducedMotion ? { opacity: 0 } : "hidden"}
+                    animate={isActive ? (prefersReducedMotion ? { opacity: 1 } : "visible") : "hidden"}
                     className="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8"
                 >
                     {/* Left: Main Screenshot (large) */}
                     <motion.div
-                        variants={itemVariants}
+                        variants={activeItemVariants}
                         className="w-full lg:flex-1 relative h-[50vh] lg:h-auto lg:aspect-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-100"
                     >
                         <Image
                             src={project.standard}
-                            alt={project.title}
+                            alt={`${project.title} - ${project.category} project screenshot`}
                             fill
+                            sizes="(max-width: 1024px) 100vw, 60vw"
                             className="object-cover object-top"
                             priority={isActive}
                         />
@@ -83,13 +91,15 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
 
                     {/* Right: Full Page Preview (vertical scroll view) */}
                     <motion.div
-                        variants={itemVariants}
+                        variants={activeItemVariants}
                         className="hidden lg:block w-80 relative rounded-xl overflow-hidden shadow-xl"
                     >
                         <Image
                             src={project.fullPage}
-                            alt={`${project.title} full page`}
+                            alt={`${project.title} full page preview`}
                             fill
+                            sizes="320px"
+                            loading="lazy"
                             className="object-cover object-top"
                         />
                     </motion.div>
@@ -97,13 +107,13 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
 
                 {/* Footer - Information Section */}
                 <motion.div
-                    variants={contentVariants}
-                    initial="hidden"
-                    animate={isActive ? "visible" : "hidden"}
+                    variants={activeContentVariants}
+                    initial={prefersReducedMotion ? { opacity: 0 } : "hidden"}
+                    animate={isActive ? (prefersReducedMotion ? { opacity: 1 } : "visible") : "hidden"}
                     className="mt-2 lg:mt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
                 >
                     <motion.div
-                        variants={itemVariants}
+                        variants={activeItemVariants}
                         className="flex items-center gap-4 w-full sm:w-auto"
                     >
                         {project.icon && (
@@ -126,7 +136,7 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
                         </div>
                     </motion.div>
 
-                    <motion.div variants={itemVariants} className="w-full sm:w-auto text-center sm:text-right">
+                    <motion.div variants={activeItemVariants} className="w-full sm:w-auto text-center sm:text-right">
                         {project.url !== "#" ? (
                             <a
                                 href={project.url}

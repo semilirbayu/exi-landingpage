@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { List, X } from "@phosphor-icons/react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+export const Header = memo(function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleNavClick = () => {
@@ -72,4 +72,4 @@ export function Header() {
       </div>
     </header>
   );
-}
+});

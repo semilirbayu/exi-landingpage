@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Project } from "./types";
 import { cn } from "@/lib/utils";
 
@@ -52,9 +52,39 @@ const circleVariants = {
     },
 };
 
+const ProjectCard = memo(function ProjectCard({
+    project,
+    prefersReducedMotion,
+}: {
+    project: Project;
+    prefersReducedMotion: boolean | null;
+}) {
+    return (
+        <motion.div
+            variants={imageVariants}
+            className={cn(
+                "relative overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300",
+                project.className,
+                "group"
+            )}
+            whileHover={prefersReducedMotion ? {} : { scale: 1.02, zIndex: 10 }}
+        >
+            <Image
+                src={project.thumbnail}
+                alt={`${project.title} - ${project.category}`}
+                fill
+                loading="lazy"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+        </motion.div>
+    );
+});
+
 export function PortfolioGrid({ projects }: PortfolioGridProps) {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
+    const prefersReducedMotion = useReducedMotion();
 
     return (
         <div
@@ -69,23 +99,11 @@ export function PortfolioGrid({ projects }: PortfolioGridProps) {
                 className="grid grid-cols-12 auto-rows-[12px] md:auto-rows-[45px] gap-1 md:gap-3 w-full"
             >
                 {projects.map((project) => (
-                    <motion.div
+                    <ProjectCard
                         key={project.number}
-                        variants={imageVariants}
-                        className={cn(
-                            "relative overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300",
-                            project.className,
-                            "group"
-                        )}
-                        whileHover={{ scale: 1.02, zIndex: 10 }}
-                    >
-                        <Image
-                            src={project.thumbnail}
-                            alt={project.title}
-                            fill
-                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        />
-                    </motion.div>
+                        project={project}
+                        prefersReducedMotion={prefersReducedMotion}
+                    />
                 ))}
             </motion.div>
 
