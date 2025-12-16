@@ -3,9 +3,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
-import { MosaicHero } from "@/components/sections/portfolio/MosaicHero";
-import { WorkSlider } from "@/components/sections/portfolio/WorkSlider";
-import { projects } from "@/components/sections/portfolio/types";
+import { PortfolioGrid, PortfolioSlider } from "@/components/sections/portfolio";
+import { projects } from "@/data/projects";
 
 import { Contact } from "@/components/sections/Contact";
 
@@ -24,10 +23,10 @@ export default function Home() {
           <Services />
         </section>
         <section className="min-h-screen snap-start">
-          <MosaicHero projects={projects} />
+          <PortfolioGrid projects={projects} />
         </section>
         <section className="min-h-screen snap-start flex flex-col justify-center">
-          <WorkSlider projects={projects} />
+          <PortfolioSlider projects={projects} />
         </section>
         <section className="min-h-screen snap-start">
           <Contact />
