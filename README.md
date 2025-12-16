@@ -61,13 +61,18 @@ components/
 │   └── Footer.tsx      # Footer with branding
 ├── sections/
 │   ├── Hero.tsx        # Welcome section
+│   ├── About.tsx       # Company info & stats
 │   ├── Services.tsx    # What We Offer
-│   ├── Portfolio.tsx   # Our Works
-│   ├── Quote.tsx       # Inspirational quote
-│   └── Contact.tsx     # Let's Talk CTA
+│   ├── Contact.tsx     # Let's Talk CTA
+│   └── portfolio/
+│       ├── index.ts          # Barrel exports
+│       ├── types.ts          # Project type definitions
+│       ├── PortfolioGrid.tsx # Mosaic grid layout
+│       ├── PortfolioSlider.tsx # Full-page slider
+│       └── PortfolioSlide.tsx  # Individual slide
 
-hooks/
-└── (animations handled by Framer Motion's useInView)
+data/
+└── projects.ts         # Portfolio project data
 
 lib/
 └── utils.ts            # Utility functions

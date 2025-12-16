@@ -20,8 +20,9 @@ This is a Next.js 14 landing page using the App Router with Tailwind CSS v4.
 
 **Component Organization:**
 - `components/layout/` - Header, Footer (persistent across pages)
-- `components/sections/` - Page sections (Hero, Services, Portfolio, Quote, Contact)
-- `hooks/` - Custom React hooks
+- `components/sections/` - Page sections (Hero, About, Services, Contact)
+- `components/sections/portfolio/` - Portfolio components (PortfolioGrid, PortfolioSlider, PortfolioSlide)
+- `data/projects.ts` - Portfolio project data
 - `lib/utils.ts` - Utility functions including `cn()` for className merging
 
 **Styling:**

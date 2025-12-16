@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView, useMotionValue, useSpring, useTransform, type Variants } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);

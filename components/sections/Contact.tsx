@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { Phone, Envelope, WhatsappLogo } from "@phosphor-icons/react";
+import { Envelope, WhatsappLogo } from "@phosphor-icons/react";
 import { motion, useInView } from "framer-motion";
 
 const contactLinks = [
@@ -106,11 +106,6 @@ export function Contact() {
                 <div className="w-16 h-16 sm:w-20 sm:h-20 gradient-bg rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg mb-3 group-hover:scale-110 transition-transform duration-300">
                   <Icon size={32} weight="fill" className="text-white" />
                 </div>
-                {/* 
-                <p className="text-dark font-medium text-sm sm:text-base">
-                  {contact.value}
-                </p>
-                */}
                 <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold group-hover:text-primary transition-colors">
                   {contact.label === "Email" ? "Email Us" : "Chat Us"}
                 </p>
