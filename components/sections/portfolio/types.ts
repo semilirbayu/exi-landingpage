@@ -5,6 +5,7 @@ export interface Project {
   tech: string;
   url: string;
   thumbnail: string;
+  standard: string;
   fullPage: string;
   icon?: string;
   className?: string;
@@ -19,6 +20,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://kitiran.foundation/",
     thumbnail: "/images/kitiran-full.jpg",
+    standard: "/images/kitiran.jpg",
     fullPage: "/images/kitiran-full.jpg",
     icon: "/icons/kitiran.svg",
     className: "col-start-4 col-span-2 row-start-2 row-span-2",
@@ -31,6 +33,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://prodigma.id/",
     thumbnail: "/images/prodigma-full.jpg",
+    standard: "/images/prodigma.jpg",
     fullPage: "/images/prodigma-full.jpg",
     icon: "/icons/prodigma.svg",
     className: "col-start-6 col-span-3 row-start-1 row-span-3",
@@ -43,6 +46,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://satset.ai/",
     thumbnail: "/images/satset-full.jpg",
+    standard: "/images/satset.jpg",
     fullPage: "/images/satset-full.jpg",
     icon: "/icons/satset.svg",
     className: "col-start-9 col-span-1 row-start-2 row-span-4",
@@ -55,6 +59,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://botbrigade.id/",
     thumbnail: "/images/botbrigade-full.jpg",
+    standard: "/images/botbrigade.jpg",
     fullPage: "/images/botbrigade-full.jpg",
     icon: "/icons/botbrigade.svg",
     className: "col-start-3 col-span-2 row-start-4 row-span-3",
@@ -67,6 +72,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://matteverse.muaq.id/",
     thumbnail: "/images/matteverse-full.jpg",
+    standard: "/images/matteverse.jpg",
     fullPage: "/images/matteverse-full.jpg",
     icon: "/icons/muaq.svg",
     className: "col-start-5 col-span-2 row-start-4 row-span-9",
@@ -79,6 +85,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://muaq.id/",
     thumbnail: "/images/muaq-full.jpg",
+    standard: "/images/muaq.jpg",
     fullPage: "/images/muaq-full.jpg",
     icon: "/icons/muaq.svg",
     className: "col-start-7 col-span-2 row-start-4 row-span-9",
@@ -91,6 +98,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "#",
     thumbnail: "/images/waktoeinstitut-full.jpg",
+    standard: "/images/waktoeinstitut.jpg",
     fullPage: "/images/waktoeinstitut-full.jpg",
     icon: "/icons/waktoeinstitut.svg",
     className: "col-start-2 col-span-3 row-start-7 row-span-4",
@@ -103,6 +111,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://kalzlab.id/",
     thumbnail: "/images/kalz-full.jpg",
+    standard: "/images/kalz.jpg",
     fullPage: "/images/kalz-full.jpg",
     icon: "/icons/kalz.svg",
     className: "col-start-9 col-span-3 row-start-6 row-span-4",
@@ -115,6 +124,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://paketkonser.com/",
     thumbnail: "/images/paketkonser-full.jpg",
+    standard: "/images/paketkonser.jpg",
     fullPage: "/images/paketkonser-full.jpg",
     icon: "/icons/paketkonser.svg",
     className: "col-start-4 col-span-1 row-start-11 row-span-4",
@@ -127,6 +137,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://bimbit.id/",
     thumbnail: "/images/bimbit-full.jpg",
+    standard: "/images/bimbit.jpg",
     fullPage: "/images/bimbit-full.jpg",
     icon: "/icons/bimbit.svg",
     className: "col-start-9 col-span-2 row-start-10 row-span-3",
@@ -139,6 +150,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "#",
     thumbnail: "/images/albasilica-full.jpg",
+    standard: "/images/albasilica.jpg",
     fullPage: "/images/albasilica-full.jpg",
     className: "col-start-5 col-span-3 row-start-13 row-span-3",
   },
@@ -150,6 +162,7 @@ export const projects: Project[] = [
     tech: "WORDPRESS",
     url: "https://soundrhythm.id/",
     thumbnail: "/images/soundrhythm-full.jpg",
+    standard: "/images/soundrhythm.jpg",
     fullPage: "/images/soundrhythm-full.jpg",
     icon: "/icons/soundrhythm.svg",
     className: "col-start-8 col-span-2 row-start-13 row-span-2",
