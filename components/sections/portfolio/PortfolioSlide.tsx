@@ -84,8 +84,9 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
                             alt={`${project.title} - ${project.category} project screenshot`}
                             fill
                             sizes="(max-width: 1024px) 100vw, 60vw"
-                            className="object-cover object-top"
-                            priority={isActive}
+                            className="object-contain object-top bg-neutral-100"
+                            loading="eager"
+                            fetchPriority={isActive ? "high" : "auto"}
                         />
                     </motion.div>
 
