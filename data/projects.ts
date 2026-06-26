@@ -27,6 +27,18 @@ export const projects: Project[] = [
     },
     {
         number: "03",
+        title: "INDEAIR",
+        category: "WEB DEVELOPMENT",
+        tech: "NEXT.JS",
+        url: "https://indeair.id/",
+        thumbnail: "/images/indeair-full.png",
+        standard: "/images/indeair.png",
+        fullPage: "/images/indeair-full.png",
+        icon: "/icons/indeair.svg",
+        className: "col-start-11 col-span-2 row-start-10 row-span-3",
+    },
+    {
+        number: "04",
         title: "INDO TRANSFER TECH",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -38,7 +50,7 @@ export const projects: Project[] = [
         className: "col-start-10 col-span-2 row-start-13 row-span-3",
     },
     {
-        number: "04",
+        number: "05",
         title: "KALZLAB",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -50,7 +62,7 @@ export const projects: Project[] = [
         className: "col-start-9 col-span-3 row-start-6 row-span-4",
     },
     {
-        number: "05",
+        number: "06",
         title: "SOUNDRHYTHM",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -62,7 +74,7 @@ export const projects: Project[] = [
         className: "col-start-8 col-span-2 row-start-13 row-span-2",
     },
     {
-        number: "06",
+        number: "07",
         title: "PAKETKONSER.COM",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -74,7 +86,7 @@ export const projects: Project[] = [
         className: "col-start-4 col-span-1 row-start-11 row-span-4",
     },
     {
-        number: "07",
+        number: "08",
         title: "MATTEVERSE",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -86,7 +98,7 @@ export const projects: Project[] = [
         className: "col-start-5 col-span-2 row-start-4 row-span-9",
     },
     {
-        number: "08",
+        number: "09",
         title: "BOTBRIGADE",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -98,7 +110,7 @@ export const projects: Project[] = [
         className: "col-start-3 col-span-2 row-start-4 row-span-3",
     },
     {
-        number: "09",
+        number: "10",
         title: "SATSET.AI",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -110,7 +122,7 @@ export const projects: Project[] = [
         className: "col-start-9 col-span-1 row-start-2 row-span-4",
     },
     {
-        number: "10",
+        number: "11",
         title: "BIMBIT",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -122,7 +134,7 @@ export const projects: Project[] = [
         className: "col-start-9 col-span-2 row-start-10 row-span-3",
     },
     {
-        number: "11",
+        number: "12",
         title: "PRODIGMA",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -134,7 +146,7 @@ export const projects: Project[] = [
         className: "col-start-6 col-span-3 row-start-1 row-span-3",
     },
     {
-        number: "12",
+        number: "13",
         title: "WAKTOE INSTITUT",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
@@ -146,7 +158,7 @@ export const projects: Project[] = [
         className: "col-start-2 col-span-3 row-start-7 row-span-4",
     },
     {
-        number: "13",
+        number: "14",
         title: "ALBASILICA",
         category: "WEB DEVELOPMENT",
         tech: "WORDPRESS",
