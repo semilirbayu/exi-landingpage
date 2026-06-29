@@ -72,12 +72,12 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
                     variants={activeContentVariants}
                     initial={prefersReducedMotion ? { opacity: 0 } : "hidden"}
                     animate={isActive ? (prefersReducedMotion ? { opacity: 1 } : "visible") : "hidden"}
-                    className="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8"
+                    className="flex-1 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-8"
                 >
                     {/* Left: Main Screenshot (large) */}
                     <motion.div
                         variants={activeItemVariants}
-                        className="w-full lg:flex-1 relative h-[50vh] lg:h-auto lg:aspect-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-100"
+                        className="w-full lg:flex-1 relative aspect-[1600/1234] rounded-2xl overflow-hidden shadow-2xl bg-neutral-100"
                     >
                         <Image
                             src={project.standard}
@@ -93,7 +93,7 @@ export function PortfolioSlide({ project, isActive }: PortfolioSlideProps) {
                     {/* Right: Full Page Preview (vertical scroll view) */}
                     <motion.div
                         variants={activeItemVariants}
-                        className="hidden lg:block w-80 relative rounded-xl overflow-hidden shadow-xl"
+                        className="hidden lg:block w-80 aspect-[320/666] relative rounded-xl overflow-hidden shadow-xl"
                     >
                         <Image
                             src={project.fullPage}

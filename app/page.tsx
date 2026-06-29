@@ -17,16 +17,16 @@ export default function Home() {
           <Hero />
         </section>
         <section className="min-h-screen snap-start">
-          <About />
-        </section>
-        <section className="min-h-screen snap-start flex flex-col justify-center">
-          <Services />
-        </section>
-        <section className="min-h-screen snap-start">
           <PortfolioGrid projects={projects} />
         </section>
         <section className="min-h-screen snap-start flex flex-col justify-center">
           <PortfolioSlider projects={projects} />
+        </section>
+        <section className="min-h-screen snap-start">
+          <About />
+        </section>
+        <section className="min-h-screen snap-start flex flex-col justify-center">
+          <Services />
         </section>
         <section className="min-h-screen snap-start">
           <Contact />
